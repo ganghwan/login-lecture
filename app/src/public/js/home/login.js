@@ -31,6 +31,6 @@ function login()
         }
     })
     .catch((err)=> {
-        console.error(new Error("로그인중 에러발생"));
+        console.error("로그인중 에러발생");
     })
 }
