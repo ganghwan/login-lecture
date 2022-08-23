@@ -4,14 +4,14 @@
 // 모듈
 const express = require("express");
 const bodyParser = require( "body-parser");
+const morgan = require('morgan');
+const logger = require("./src/config/logger");
 const dotenv = require("dotenv");
-// const morgan = require('morgan');
 
-
+dotenv.config();
 
 const app = express();
 
-dotenv.config();
 
 
 // 라우팅
@@ -36,6 +36,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 // morgan 이용 로그
 // app.use(morgan("dev"));
 // app.use(morgan("common",{stream: accessLogStream}));
+
+// margan 이용하여 winston 로그
+app.use(morgan("tiny",{stream: logger.stream}));
 
 
 app.use("/", home); // use -> 미들웨어를 등록해주는 메소드.
